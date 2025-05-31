@@ -209,6 +209,76 @@
             border-radius: 3px;
         }
 
+        /* Modal Styles สำหรับ iframe */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 2% auto;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            width: 95%;
+            max-width: 1200px;
+            height: 90%;
+            position: relative;
+            box-shadow: 0 20px 25px rgba(0,0,0,0.3);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            z-index: 1001;
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: calc(100% - 60px);
+            margin-top: 50px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* สไตล์สำหรับ iframe ที่จะซ่อนแถบสีฟ้า */
+        .app-script-iframe {
+            width: 100%;
+            height: calc(100% + 60px); /* เพิ่มความสูงเพื่อซ่อนแถบด้านบน */
+            border: none;
+            margin-top: -60px; /* ดันขึ้นเพื่อซ่อนแถบสีฟ้า */
+            border-radius: var(--border-radius);
+        }
+
         footer {
             margin-top: 40px;
             text-align: center;
@@ -298,6 +368,18 @@
                 font-size: 20px;
                 margin-right: 12px;
             }
+
+            .modal-content {
+                margin: 1% auto;
+                width: 98%;
+                height: 95%;
+                padding: 10px;
+            }
+
+            .iframe-container {
+                height: calc(100% - 40px);
+                margin-top: 30px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -340,14 +422,14 @@
         <div class="category">
             <h2 class="category-title">สำหรับผู้ประเมินแต่ละสี</h2>
             <div class="links-list">
-                <a href="https://forms.gle/SLtiCSPMApC875xL6" class="link-bar">
+                <a href="https://forms.gle/SLtiCSPMApC875xL6" class="link-bar" target="_blank">
                     <i class="fas fa-clipboard-check link-icon"></i>
-                    <span class="link-title">Self Audit (ก่อนทำ 5ส.)</span>
+                    <span class="link-title">Self Audit</span>
                     <i class="fas fa-chevron-right link-arrow"></i>
                 </a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSNAgmE8jxQ809QDZQmxxuSEjMa69RB31VyAtIWqhU6EbFFw/viewform" class="link-bar">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSNAgmE8jxQ809QDZQmxxuSEjMa69RB31VyAtIWqhU6EbFFw/viewform" class="link-bar" target="_blank">
                     <i class="fas fa-users-cog link-icon"></i>
-                    <span class="link-title">Committee Audit (หลังทำ 5ส.)</span>
+                    <span class="link-title">Committee Audit</span>
                     <i class="fas fa-chevron-right link-arrow"></i>
                 </a>
             </div>
@@ -357,17 +439,17 @@
         <div class="category">
             <h2 class="category-title">สำหรับหัวหน้าแต่ละสี</h2>
             <div class="links-list">
-                <a href="https://script.google.com/macros/s/AKfycbzXW8mTyaPBOo6tiARr3LdafNdQlmCgPQVH4pJv8TrhD1Y0UrtOe1FDINwvvct4lXrS/exec" class="link-bar">
+                <a href="#" class="link-bar app-script-link" data-url="https://script.google.com/macros/s/AKfycbzXW8mTyaPBOo6tiARr3LdafNdQlmCgPQVH4pJv8TrhD1Y0UrtOe1FDINwvvct4lXrS/exec">
                     <i class="fas fa-file-powerpoint link-icon" style="color: #000080;"></i>
                     <span class="link-title">Slide 5ส. Navy Color</span>
                     <i class="fas fa-chevron-right link-arrow"></i>
                 </a>
-                <a href="https://script.google.com/macros/s/AKfycbyU4oBo2dVEoAgvX6Hc4cgmOYmzujbsfaHeBvW9lXfONtd-hWgzfG8O8wn_Oczkt6Bw/exec" class="link-bar">
+                <a href="#" class="link-bar app-script-link" data-url="https://script.google.com/macros/s/AKfycbyU4oBo2dVEoAgvX6Hc4cgmOYmzujbsfaHeBvW9lXfONtd-hWgzfG8O8wn_Oczkt6Bw/exec">
                     <i class="fas fa-file-powerpoint link-icon" style="color: #8BC34A;"></i>
                     <span class="link-title">Slide 5ส. Kiwi Color</span>
                     <i class="fas fa-chevron-right link-arrow"></i>
                 </a>
-                <a href="https://script.google.com/macros/s/AKfycbxQXeiiH9upgkAK_nNJcG2Ph4Tsgjo7NP0MjUoFxL44CtJdl2jlejjWxN9cFsG9bujO0A/exec" class="link-bar">
+                <a href="#" class="link-bar app-script-link" data-url="https://script.google.com/macros/s/AKfycbxQXeiiH9upgkAK_nNJcG2Ph4Tsgjo7NP0MjUoFxL44CtJdl2jlejjWxN9cFsG9bujO0A/exec">
                     <i class="fas fa-file-powerpoint link-icon" style="color: #FFC107;"></i>
                     <span class="link-title">Slide 5ส. Honey Color</span>
                     <i class="fas fa-chevron-right link-arrow"></i>
@@ -379,7 +461,7 @@
         <div class="category">
             <h2 class="category-title">คะแนนกิจกรรม 5ส. แต่สี</h2>
             <div class="links-list">
-                <a href="https://lookerstudio.google.com/embed/reporting/05e77c25-2270-4e12-ab47-a1b4d372a151/page/GWxFF" class="link-bar">
+                <a href="https://lookerstudio.google.com/embed/reporting/05e77c25-2270-4e12-ab47-a1b4d372a151/page/GWxFF" class="link-bar" target="_blank">
                     <i class="fas fa-chart-bar link-icon"></i>
                     <span class="link-title">คะแนนกิจกรรม 5ส.</span>
                     <i class="fas fa-chevron-right link-arrow"></i>
@@ -390,6 +472,16 @@
         <footer>
             <p>© 2568 Lab MK 🌿</p>
         </footer>
+    </div>
+
+    <!-- Modal สำหรับแสดง App Script iframe -->
+    <div id="appScriptModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="iframe-container">
+                <iframe id="appScriptIframe" class="app-script-iframe" src=""></iframe>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -406,6 +498,9 @@
             
             // เพิ่มฟังก์ชันค้นหา
             setupSearch();
+            
+            // เพิ่มฟังก์ชัน Modal สำหรับ App Script
+            setupAppScriptModal();
         });
         
         // ฟังก์ชันสำหรับการค้นหา
@@ -493,6 +588,50 @@
             
             // เพิ่มคำแนะนำการใช้งาน
             searchInput.setAttribute('title', 'ค้นหาลิงค์ (กด Esc เพื่อล้างการค้นหา)');
+        }
+
+        // ฟังก์ชันสำหรับ Modal App Script
+        function setupAppScriptModal() {
+            const modal = document.getElementById('appScriptModal');
+            const iframe = document.getElementById('appScriptIframe');
+            const closeBtn = document.querySelector('.close');
+            const appScriptLinks = document.querySelectorAll('.app-script-link');
+
+            // เพิ่ม event listener สำหรับลิงค์ App Script
+            appScriptLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const url = this.getAttribute('data-url');
+                    iframe.src = url;
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden'; // ป้องกันการ scroll หลังหน้า
+                });
+            });
+
+            // ปิด modal เมื่อคลิกปุ่ม X
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                iframe.src = ''; // ล้าง iframe
+                document.body.style.overflow = 'auto'; // คืนค่าการ scroll
+            });
+
+            // ปิด modal เมื่อคลิกข้างนอก
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    iframe.src = ''; // ล้าง iframe
+                    document.body.style.overflow = 'auto'; // คืนค่าการ scroll
+                }
+            });
+
+            // ปิด modal เมื่อกด Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'block') {
+                    modal.style.display = 'none';
+                    iframe.src = ''; // ล้าง iframe
+                    document.body.style.overflow = 'auto'; // คืนค่าการ scroll
+                }
+            });
         }
     </script>
 </body>
