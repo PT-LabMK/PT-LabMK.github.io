@@ -6,24 +6,24 @@
     <title>ลิงค์ 5ส. Lab MK</title>
     <style>
         :root {
-            --primary-color: #7ACDA0;  /* สีเขียวพาสเทลหลัก */
-            --secondary-color: #6BB893; /* สีเขียวพาสเทลเข้มกว่าเล็กน้อย */
+            --primary-color: #7ACDA0;
+            --secondary-color: #6BB893;
             --text-color: #333;
-            --bg-color: #F0F8F4; /* พื้นหลังสีเขียวอ่อนมาก */
+            --bg-color: #F0F8F4;
             --card-bg: #ffffff;
             --shadow: 0 4px 6px rgba(122, 205, 160, 0.15);
             --hover-shadow: 0 10px 15px rgba(122, 205, 160, 0.25);
             --border-radius: 12px;
-            --input-bg: #E8F5EE; /* พื้นหลัง input สีเขียวอ่อน */
+            --input-bg: #E8F5EE;
             --input-text: #333;
-            --input-placeholder: #779886; /* สีตัวอักษร placeholder เขียวกลาง */
+            --input-placeholder: #779886;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Prompt', sans-serif;
             transition: all 0.3s ease;
         }
 
@@ -48,7 +48,6 @@
         header {
             text-align: center;
             margin-bottom: 30px;
-            position: relative;
         }
 
         .profile-img {
@@ -59,12 +58,6 @@
             border: 4px solid var(--primary-color);
             box-shadow: var(--shadow);
             margin-bottom: 16px;
-            transition: all 0.5s ease;
-        }
-        
-        .profile-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(122, 205, 160, 0.6);
         }
 
         h1 {
@@ -74,47 +67,31 @@
         }
 
         p {
-            color: var(--text-color);
             font-size: 1.1rem;
-            max-width: 500px;
             margin: 0 auto 20px;
         }
 
-        /* Search Bar Styles */
         .search-container {
             width: 100%;
             max-width: 500px;
             margin: 20px auto 0;
         }
-        
+
         .search-box {
             position: relative;
             width: 100%;
         }
-        
+
         #searchInput {
             width: 100%;
             padding: 12px 20px 12px 45px;
             border: none;
             border-radius: 50px;
             background-color: var(--input-bg);
-            color: var(--input-text);
             font-size: 1rem;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
         }
-        
-        #searchInput:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px var(--primary-color);
-            background-color: rgba(122, 205, 160, 0.1);
-        }
-        
-        #searchInput::placeholder {
-            color: var(--input-placeholder);
-            opacity: 0.8;
-        }
-        
+
         .search-icon {
             position: absolute;
             left: 18px;
@@ -124,7 +101,6 @@
             font-size: 18px;
         }
 
-        /* ปุ่มลิงค์แบบแถบ */
         .links-list {
             display: flex;
             flex-direction: column;
@@ -133,9 +109,7 @@
         }
 
         .link-bar {
-            position: relative;
             border-radius: var(--border-radius);
-            overflow: hidden;
             box-shadow: var(--shadow);
             text-decoration: none;
             color: var(--text-color);
@@ -143,27 +117,12 @@
             align-items: center;
             background-color: var(--card-bg);
             padding: 15px 20px;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .link-bar:hover {
-            transform: translateX(5px);
-            box-shadow: var(--hover-shadow);
-        }
-        
         .link-icon {
             font-size: 24px;
             color: var(--primary-color);
             margin-right: 16px;
-            transition: transform 0.3s ease, color 0.3s ease;
-            width: 32px;
-            text-align: center;
-        }
-
-        .link-bar:hover .link-icon {
-            transform: scale(1.2);
-            color: var(--secondary-color);
         }
 
         .link-title {
@@ -171,20 +130,7 @@
             font-weight: 500;
             flex-grow: 1;
         }
-        
-        .link-arrow {
-            margin-left: auto;
-            color: var(--primary-color);
-            opacity: 0.7;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        
-        .link-bar:hover .link-arrow {
-            transform: translateX(4px);
-            opacity: 1;
-        }
 
-        /* Category Styles */
         .category {
             margin: 35px 0 10px;
         }
@@ -193,213 +139,19 @@
             font-size: 1.3rem;
             color: var(--primary-color);
             margin-bottom: 15px;
-            position: relative;
             padding-bottom: 8px;
+            border-bottom: 3px solid var(--secondary-color);
             display: inline-block;
-        }
-
-        .category-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            border-radius: 3px;
-        }
-
-        /* Modal Styles สำหรับ iframe */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            background-color: var(--card-bg);
-            margin: 2% auto;
-            padding: 20px;
-            border-radius: var(--border-radius);
-            width: 95%;
-            max-width: 1200px;
-            height: 90%;
-            position: relative;
-            box-shadow: 0 20px 25px rgba(0,0,0,0.3);
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            position: absolute;
-            right: 15px;
-            top: 10px;
-            z-index: 1001;
-            background: var(--primary-color);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .close:hover {
-            background: var(--secondary-color);
-            transform: scale(1.1);
-        }
-
-        .iframe-container {
-            width: 100%;
-            height: calc(100% - 60px);
-            margin-top: 50px;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* สไตล์สำหรับ iframe ที่จะซ่อนแถบสีฟ้า */
-        .app-script-iframe {
-            width: 100%;
-            height: calc(100% + 60px); /* เพิ่มความสูงเพื่อซ่อนแถบด้านบน */
-            border: none;
-            margin-top: -60px; /* ดันขึ้นเพื่อซ่อนแถบสีฟ้า */
-            border-radius: var(--border-radius);
         }
 
         footer {
             margin-top: 40px;
             text-align: center;
             font-size: 0.9rem;
-            color: var(--text-color);
             opacity: 0.7;
-        }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .links-list .link-bar {
-            animation: fadeIn 0.5s ease forwards;
-            opacity: 0;
-        }
-
-        /* Animation delay for each box */
-        .links-list .link-bar:nth-child(1) { animation-delay: 0.1s; }
-        .links-list .link-bar:nth-child(2) { animation-delay: 0.15s; }
-        .links-list .link-bar:nth-child(3) { animation-delay: 0.2s; }
-        .links-list .link-bar:nth-child(4) { animation-delay: 0.25s; }
-        .links-list .link-bar:nth-child(5) { animation-delay: 0.3s; }
-        
-        /* Hidden class for search results */
-        .hidden {
-            display: none;
-        }
-        
-        /* No results message */
-        .no-results {
-            text-align: center;
-            padding: 20px;
-            color: var(--text-color);
-            font-style: italic;
-            opacity: 0.7;
-        }
-        
-        /* Highlight matched text in search results */
-        .highlight {
-            background-color: rgba(122, 205, 160, 0.3);
-            padding: 0 2px;
-            border-radius: 3px;
-            font-weight: bold;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary-color);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            .profile-img {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .link-bar {
-                padding: 12px 15px;
-            }
-            
-            .link-icon {
-                font-size: 20px;
-                margin-right: 12px;
-            }
-
-            .modal-content {
-                margin: 1% auto;
-                width: 98%;
-                height: 95%;
-                padding: 10px;
-            }
-
-            .iframe-container {
-                height: calc(100% - 40px);
-                margin-top: 30px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .link-title {
-                font-size: 1rem;
-            }
-            
-            .link-bar {
-                padding: 10px 12px;
-            }
-            
-            .link-icon {
-                font-size: 18px;
-                margin-right: 10px;
-            }
         }
     </style>
-    <!-- ใช้ Font Awesome สำหรับไอคอน -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- ใช้ Google Font - Prompt สำหรับภาษาไทย -->
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -408,8 +160,6 @@
             <img src="image/logo.png" alt="โปรไฟล์" class="profile-img">
             <h1>5ส. Lab MK</h1>
             <p>ลิงค์รวมกิจกรรม 5ส. ประจำปี 2568</p>
-            
-            <!-- เพิ่ม Search Bar -->
             <div class="search-container">
                 <div class="search-box">
                     <i class="fas fa-search search-icon"></i>
@@ -425,46 +175,40 @@
                 <a href="https://forms.gle/SLtiCSPMApC875xL6" class="link-bar" target="_blank">
                     <i class="fas fa-clipboard-check link-icon"></i>
                     <span class="link-title">Self Audit</span>
-                    <i class="fas fa-chevron-right link-arrow"></i>
                 </a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSNAgmE8jxQ809QDZQmxxuSEjMa69RB31VyAtIWqhU6EbFFw/viewform?usp=pp_url&entry.377380250=5&entry.1582647422=5&entry.719945146=5&entry.1362137058=5&entry.291490788=5&entry.2048638056=5&entry.964105177=5&entry.170057086=5&entry.481707103=5&entry.48811304=5&entry.1802257736=5&entry.300275385=5&entry.147483391=5&entry.1644871154=5&entry.1786297391=5&entry.1125501934=5&entry.1083127248=5&entry.182368470=5&entry.896572790=5&entry.1769727111=5&entry.1729508791=5&entry.1988283087=5&entry.561647494=5&entry.1747205908=5&entry.244459109=5&entry.264949408=5&entry.1670342507=5&entry.920813110=5&entry.955792268=5&entry.830290016=5&entry.310240836=5&entry.1307885121=5&entry.1431509753=5&entry.1785358992=5&entry.1103311857=5&entry.2126015733=5&entry.1538939195=5&entry.1827600368=5&entry.759024045=5&entry.1775864357=5&entry.1982683820=5&entry.1982534875=5&entry.1884248555=5&entry.4085089=5&entry.98040555=5&entry.638767687=5&entry.2013846066=5&entry.150728581=5&entry.1772708348=5&entry.915538392=5&entry.488595501=5&entry.795657747=5&entry.407936752=5&entry.889366617=5&entry.1355861136=5&entry.267167721=5&entry.1915790844=5&entry.967072690=5&entry.516528423=5&entry.1201297480=5&entry.816166815=5&entry.878130852=5&entry.764675128=5&entry.1673439030=5&entry.1572072629=5&entry.327271755=5&entry.1794706846=5&entry.274168544=5&entry.1288768382=5&entry.583803480=5&entry.1374531207=5&entry.1149604355=5&entry.1641728777=5&entry.1304343110=5&entry.219143936=5&entry.1216245579=5&entry.971060398=5&entry.1886524868=5&entry.1444380955=5&entry.845937069=5&entry.521997051=5&entry.1568384879=5&entry.1883081316=5&entry.58536956=5&entry.2005132489=5&entry.341910223=5&entry.577420354=5&entry.305480264=5&entry.989831700=5&entry.866315830=5&entry.187853572=5&entry.385098739=5&entry.1000781432=5&entry.272457630=5&entry.640383259=5&entry.2047948951=5&entry.460466318=5&entry.198340565=5&entry.1882810560=5&entry.1471661569=5&entry.1948456018=5&entry.1443247332=5&entry.637478407=5&entry.1980800241=5&entry.1420281258=5&entry.1061797505=5&entry.1421384431=5&entry.1841128459=5&entry.830608144=5&entry.1612559002=5" class="link-bar" target="_blank">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSNAgmE8jxQ809QDZQmxxuSEjMa69RB31VyAtIWqhU6EbFFw/viewform" class="link-bar" target="_blank">
                     <i class="fas fa-users-cog link-icon"></i>
                     <span class="link-title">Committee Audit</span>
-                    <i class="fas fa-chevron-right link-arrow"></i>
                 </a>
             </div>
         </div>
 
-        <!-- สำหรับหัวหน้าแต่ละสี -->
+        <!-- สำหรับหัวหน้าแต่ละสี (แก้ไขเอา iframe modal ออก เหลือเป็นลิงก์ตรง) -->
         <div class="category">
             <h2 class="category-title">สำหรับหัวหน้าแต่ละสี</h2>
             <div class="links-list">
-                <a href="#" class="link-bar app-script-link" data-url="https://script.google.com/macros/s/AKfycbzXW8mTyaPBOo6tiARr3LdafNdQlmCgPQVH4pJv8TrhD1Y0UrtOe1FDINwvvct4lXrS/exec">
+                <a href="https://script.google.com/macros/s/AKfycbzXW8mTyaPBOo6tiARr3LdafNdQlmCgPQVH4pJv8TrhD1Y0UrtOe1FDINwvvct4lXrS/exec" class="link-bar" target="_blank">
                     <i class="fas fa-file-powerpoint link-icon" style="color: #000080;"></i>
                     <span class="link-title">Slide 5ส. Navy Color</span>
-                    <i class="fas fa-chevron-right link-arrow"></i>
                 </a>
-                <a href="#" class="link-bar app-script-link" data-url="https://script.google.com/macros/s/AKfycbyU4oBo2dVEoAgvX6Hc4cgmOYmzujbsfaHeBvW9lXfONtd-hWgzfG8O8wn_Oczkt6Bw/exec">
+                <a href="https://script.google.com/macros/s/AKfycbyU4oBo2dVEoAgvX6Hc4cgmOYmzujbsfaHeBvW9lXfONtd-hWgzfG8O8wn_Oczkt6Bw/exec" class="link-bar" target="_blank">
                     <i class="fas fa-file-powerpoint link-icon" style="color: #8BC34A;"></i>
                     <span class="link-title">Slide 5ส. Kiwi Color</span>
-                    <i class="fas fa-chevron-right link-arrow"></i>
                 </a>
-                <a href="#" class="link-bar app-script-link" data-url="https://script.google.com/macros/s/AKfycbxQXeiiH9upgkAK_nNJcG2Ph4Tsgjo7NP0MjUoFxL44CtJdl2jlejjWxN9cFsG9bujO0A/exec">
+                <a href="https://script.google.com/macros/s/AKfycbxQXeiiH9upgkAK_nNJcG2Ph4Tsgjo7NP0MjUoFxL44CtJdl2jlejjWxN9cFsG9bujO0A/exec" class="link-bar" target="_blank">
                     <i class="fas fa-file-powerpoint link-icon" style="color: #FFC107;"></i>
                     <span class="link-title">Slide 5ส. Honey Color</span>
-                    <i class="fas fa-chevron-right link-arrow"></i>
                 </a>
             </div>
         </div>
 
-        <!-- คะแนนกิจกรรม 5ส. แต่สี -->
+        <!-- คะแนนกิจกรรม 5ส. -->
         <div class="category">
             <h2 class="category-title">คะแนนกิจกรรม 5ส. แต่สี</h2>
             <div class="links-list">
                 <a href="https://lookerstudio.google.com/embed/reporting/05e77c25-2270-4e12-ab47-a1b4d372a151/page/GWxFF" class="link-bar" target="_blank">
                     <i class="fas fa-chart-bar link-icon"></i>
                     <span class="link-title">คะแนนกิจกรรม 5ส.</span>
-                    <i class="fas fa-chevron-right link-arrow"></i>
                 </a>
             </div>
         </div>
@@ -473,166 +217,5 @@
             <p>© 2568 Lab MK 🌿</p>
         </footer>
     </div>
-
-    <!-- Modal สำหรับแสดง App Script iframe -->
-    <div id="appScriptModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="iframe-container">
-                <iframe id="appScriptIframe" class="app-script-iframe" src=""></iframe>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Animation trigger for links
-        document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('.link-bar');
-            links.forEach(link => {
-                link.style.opacity = '0';
-                // แสดง animation เมื่อโหลดหน้าเสร็จ
-                setTimeout(() => {
-                    link.style.opacity = '1';
-                }, 100);
-            });
-            
-            // เพิ่มฟังก์ชันค้นหา
-            setupSearch();
-            
-            // เพิ่มฟังก์ชัน Modal สำหรับ App Script
-            setupAppScriptModal();
-        });
-        
-        // ฟังก์ชันสำหรับการค้นหา
-        function setupSearch() {
-            const searchInput = document.getElementById('searchInput');
-            const categories = document.querySelectorAll('.category');
-            const linkBars = document.querySelectorAll('.link-bar');
-            
-            // เพิ่ม event listener สำหรับการพิมพ์ค้นหา (real-time search)
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase().trim();
-                let hasResults = false;
-                
-                // ลบข้อความ "ไม่พบผลลัพธ์" ที่อาจมีอยู่
-                const existingNoResults = document.querySelector('.no-results');
-                if (existingNoResults) {
-                    existingNoResults.remove();
-                }
-                
-                // ถ้าไม่มีคำค้นหา แสดงทุกลิงค์
-                if (searchTerm === '') {
-                    linkBars.forEach(bar => {
-                        bar.classList.remove('hidden');
-                        
-                        // ลบ highlight ที่อาจมีอยู่
-                        const title = bar.querySelector('.link-title');
-                        title.innerHTML = title.textContent;
-                    });
-                    
-                    // แสดงทุกหมวดหมู่
-                    categories.forEach(category => {
-                        category.classList.remove('hidden');
-                    });
-                    
-                    return;
-                }
-                
-                // ซ่อนทุกลิงค์ก่อน
-                linkBars.forEach(bar => {
-                    bar.classList.add('hidden');
-                });
-                
-                // ตรวจสอบแต่ละลิงค์
-                linkBars.forEach(bar => {
-                    const title = bar.querySelector('.link-title');
-                    const titleText = title.textContent.toLowerCase();
-                    
-                    if (titleText.includes(searchTerm)) {
-                        // แสดงลิงค์ที่ตรงกับคำค้นหา
-                        bar.classList.remove('hidden');
-                        hasResults = true;
-                        
-                        // Highlight คำที่ตรงกับคำค้นหา
-                        const regex = new RegExp(`(${searchTerm})`, 'gi');
-                        title.innerHTML = title.textContent.replace(regex, '<span class="highlight">$1</span>');
-                    }
-                });
-                
-                // ตรวจสอบแต่ละหมวดหมู่ว่ามีลิงค์ที่แสดงอยู่หรือไม่
-                categories.forEach(category => {
-                    const visibleLinks = category.querySelectorAll('.link-bar:not(.hidden)');
-                    if (visibleLinks.length > 0) {
-                        category.classList.remove('hidden');
-                    } else {
-                        category.classList.add('hidden');
-                    }
-                });
-                
-                // แสดงข้อความเมื่อไม่พบผลลัพธ์
-                if (!hasResults) {
-                    const noResults = document.createElement('div');
-                    noResults.className = 'no-results';
-                    noResults.textContent = `ไม่พบลิงค์ที่ตรงกับ "${searchTerm}"`;
-                    document.querySelector('.container').appendChild(noResults);
-                }
-            });
-            
-            // เพิ่ม event listener สำหรับการกด Escape เพื่อล้างการค้นหา
-            searchInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    this.value = '';
-                    this.dispatchEvent(new Event('input'));
-                }
-            });
-            
-            // เพิ่มคำแนะนำการใช้งาน
-            searchInput.setAttribute('title', 'ค้นหาลิงค์ (กด Esc เพื่อล้างการค้นหา)');
-        }
-
-        // ฟังก์ชันสำหรับ Modal App Script
-        function setupAppScriptModal() {
-            const modal = document.getElementById('appScriptModal');
-            const iframe = document.getElementById('appScriptIframe');
-            const closeBtn = document.querySelector('.close');
-            const appScriptLinks = document.querySelectorAll('.app-script-link');
-
-            // เพิ่ม event listener สำหรับลิงค์ App Script
-            appScriptLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const url = this.getAttribute('data-url');
-                    iframe.src = url;
-                    modal.style.display = 'block';
-                    document.body.style.overflow = 'hidden'; // ป้องกันการ scroll หลังหน้า
-                });
-            });
-
-            // ปิด modal เมื่อคลิกปุ่ม X
-            closeBtn.addEventListener('click', function() {
-                modal.style.display = 'none';
-                iframe.src = ''; // ล้าง iframe
-                document.body.style.overflow = 'auto'; // คืนค่าการ scroll
-            });
-
-            // ปิด modal เมื่อคลิกข้างนอก
-            window.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                    iframe.src = ''; // ล้าง iframe
-                    document.body.style.overflow = 'auto'; // คืนค่าการ scroll
-                }
-            });
-
-            // ปิด modal เมื่อกด Escape
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && modal.style.display === 'block') {
-                    modal.style.display = 'none';
-                    iframe.src = ''; // ล้าง iframe
-                    document.body.style.overflow = 'auto'; // คืนค่าการ scroll
-                }
-            });
-        }
-    </script>
 </body>
 </html>
